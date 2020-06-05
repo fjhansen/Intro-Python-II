@@ -1,4 +1,5 @@
 from room import Room
+from player import Player
 
 # Declare all the rooms
 
@@ -38,13 +39,23 @@ room['treasure'].s_to = room['narrow']
 #
 print("ROOMS: \n", room['outside'])
 
-def roomWatcher(**dict):
+def watcher(**dict):
     for key in dict:
         print(f'KEY: {key} \nVALU: \n{dict[key]}')
 
-print(roomWatcher(**room))
+print(watcher(**room))
 # Make a new player object that is currently in the 'outside' room.
-player['jsalvia']
+player = {'terry': Player("Terry",
+                          "Plainsman",
+                          "Male",
+                          "Prophet",
+                          "A serial tinkerer who is destined for greater things",
+                          "Shovel",
+                          "TBA",
+                          "TBA",
+                          )
+          }
+print(watcher(**player))
 
 # Write a loop that:
 #
