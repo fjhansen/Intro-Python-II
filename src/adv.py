@@ -36,8 +36,15 @@ room['treasure'].s_to = room['narrow']
 #
 # Main
 #
+print("ROOMS: \n", room['outside'])
 
+def roomWatcher(**dict):
+    for key in dict:
+        print(f'KEY: {key} \nVALU: \n{dict[key]}')
+
+print(roomWatcher(**room))
 # Make a new player object that is currently in the 'outside' room.
+player['jsalvia']
 
 # Write a loop that:
 #
@@ -49,3 +56,5 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+
