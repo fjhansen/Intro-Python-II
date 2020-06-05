@@ -1,5 +1,6 @@
 from room import Room
 from player import Player
+from weapons import Weapons
 
 # Declare all the rooms
 
@@ -44,15 +45,25 @@ def watcher(**dict):
         print(f'KEY: {key} \nVALU: \n{dict[key]}')
 
 print(watcher(**room))
+
+
+inventory = {'terryinv': Weapons("Holy Sword",
+                                 "Blessed Golden Sword",
+                                 "Blessed",
+                                 "Forgiven",
+                                 24,
+                                 )
+             }
 # Make a new player object that is currently in the 'outside' room.
 player = {'terry': Player("Terry",
                           "Plainsman",
                           "Male",
                           "Prophet",
                           "A serial tinkerer who is destined for greater things",
-                          "Shovel",
                           "TBA",
                           "TBA",
+                          room['outside'],
+                          inventory['terryinv'],
                           )
           }
 print(watcher(**player))
