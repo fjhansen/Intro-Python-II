@@ -42,7 +42,7 @@ print("ROOMS: \n", room['outside'])
 
 def watcher(**dict):
     for key in dict:
-        print(f'KEY: {key} \nVALU: \n{dict[key]}')
+        print(f'\n KEY: {key} \n VALU: {dict[key]}')
 
 print(watcher(**room))
 
@@ -78,5 +78,26 @@ print(watcher(**player))
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+print(player['terry'].room.name)
+
+while True:
+    print("\n Now In " + player['terry'].room.name)
+
+    txt = input("COMMAND->>".lower())
+
+    if txt == "north":
+        try:
+            player['terry'].room.n_to
+            print("\n Was in " + player['terry'].room.name)
+        except AttributeError:
+            print("Not possible, try another direction")
+        else:
+            player['terry'].room = player['terry'].room.n_to
+    elif txt == "q":
+        print("GAME OVER")
+        break
+
+else: print("WIP")
 
 

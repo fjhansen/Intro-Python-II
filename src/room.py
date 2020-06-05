@@ -5,4 +5,4 @@ class Room:
         self.name = name
         self.desc = description
     def __str__(self):
-        return f'****ROOM***** \n NAME: "{self.name}" \n DESC: "{self.desc}" \n----------------------------'
+        return f'\n ****ROOM***** \n NAME: "{self.name}" \n DESC: "{self.desc}" \n----------------------------'
