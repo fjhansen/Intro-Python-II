@@ -1,4 +1,11 @@
+import os
+import sys
+try: color = sys.stdout.shell
+except AttributeError: raise RuntimeError("Use IDLE")
+
 from room import Room
+from player import Player
+from weapons import Weapons
 
 # Declare all the rooms
 
@@ -36,8 +43,36 @@ room['treasure'].s_to = room['narrow']
 #
 # Main
 #
+print("ROOMS: \n", room['outside'])
 
+def watcher(**dict):
+    for key in dict:
+        print(f'\n KEY: {key} \n VALU: {dict[key]}')
+
+print(watcher(**room))
+
+
+inventory = {'terryinv': Weapons("Holy Sword",
+                                 "Blessed Golden Sword",
+                                 "Blessed",
+                                 "Forgiven",
+                                 24,
+                                 )
+             }
 # Make a new player object that is currently in the 'outside' room.
+player = {'terry': Player("Terry",
+                          "Plainsman",
+                          "Male",
+                          "Prophet",
+                          "A serial tinkerer who is destined for greater things",
+                          "TBA",
+                          "TBA",
+                          room['outside'],
+                          inventory['terryinv'],
+                          )
+          }
+print(watcher(**player))
+##print(player['terry'].inventory)
 
 # Write a loop that:
 #
@@ -49,3 +84,55 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+print(player['terry'].room.name)
+
+while True:
+    color.write("\n Now In " + player['terry'].room.name, "STRING")
+
+    txt = input("\n COMMAND->>".lower())
+
+    if txt == "north":
+        try:
+            player['terry'].room.n_to
+            print("\n Was in " + player['terry'].room.name)
+        except AttributeError:
+            print("Not possible, try another direction")
+        else:
+            player['terry'].room = player['terry'].room.n_to
+    if txt == "east":
+        try:
+            player['terry'].room.e_to
+            print("\n Was in " + player['terry'].room.name)
+        except AttributeError:
+            color.write("Not possible, try another direction", "COMMENT")
+        else:
+            player['terry'].room = player['terry'].room.e_to
+    if txt == "south":
+        try:
+            player['terry'].room.s_to
+            print("\n Was in " + player['terry'].room.name)
+        except AttributeError:
+            print("Not possible, try another direction")
+        else:
+            player['terry'].room = player['terry'].room.s_to
+    if txt == "west":
+        try:
+            player['terry'].room.w_to
+            print("\n Was in " + player['terry'].room.name)
+        except AttributeError:
+            print("Not possible, try another direction")
+        else:
+            player['terry'].room = player['terry'].room.w_to
+    if txt == "inv":
+        try:
+            print(watcher(**inventory))
+        except AttributeError:
+            print("Found 0 items")
+    elif txt == "q":
+        print("GAME OVER")
+        break
+
+else: print("WIP")
+
+
