@@ -1,3 +1,8 @@
+import os
+import sys
+try: color = sys.stdout.shell
+except AttributeError: raise RuntimeError("Use IDLE")
+
 from room import Room
 from player import Player
 from weapons import Weapons
@@ -67,6 +72,7 @@ player = {'terry': Player("Terry",
                           )
           }
 print(watcher(**player))
+##print(player['terry'].inventory)
 
 # Write a loop that:
 #
@@ -82,9 +88,9 @@ print(watcher(**player))
 print(player['terry'].room.name)
 
 while True:
-    print("\n Now In " + player['terry'].room.name)
+    color.write("\n Now In " + player['terry'].room.name, "STRING")
 
-    txt = input("COMMAND->>".lower())
+    txt = input("\n COMMAND->>".lower())
 
     if txt == "north":
         try:
@@ -94,6 +100,35 @@ while True:
             print("Not possible, try another direction")
         else:
             player['terry'].room = player['terry'].room.n_to
+    if txt == "east":
+        try:
+            player['terry'].room.e_to
+            print("\n Was in " + player['terry'].room.name)
+        except AttributeError:
+            color.write("Not possible, try another direction", "COMMENT")
+        else:
+            player['terry'].room = player['terry'].room.e_to
+    if txt == "south":
+        try:
+            player['terry'].room.s_to
+            print("\n Was in " + player['terry'].room.name)
+        except AttributeError:
+            print("Not possible, try another direction")
+        else:
+            player['terry'].room = player['terry'].room.s_to
+    if txt == "west":
+        try:
+            player['terry'].room.w_to
+            print("\n Was in " + player['terry'].room.name)
+        except AttributeError:
+            print("Not possible, try another direction")
+        else:
+            player['terry'].room = player['terry'].room.w_to
+    if txt == "inv":
+        try:
+            print(watcher(**inventory))
+        except AttributeError:
+            print("Found 0 items")
     elif txt == "q":
         print("GAME OVER")
         break

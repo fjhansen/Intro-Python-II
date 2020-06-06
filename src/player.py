@@ -20,6 +20,6 @@ class Player:
         return f'\n ♥♥♥♥♥PLAYER♥♥♥♥♥ \n NAME: "{self.name}" \n RACE: "{self.race}" \n SEX: "{self.sex}" \n ROLE: "{self.role}" \n BIO: "{self.bio}" \n INV: "{self.inv}" \n SKIL: "{self.skil}" \n STAT: "{self.stat} \n ROOM: "{self.room.name}" \n----------------------------'
     def inventory(self):
         i = ''
-        for x in self.inventory:
-            i += f"†††††ITEM††††† \n NAME: {x.name} - ({x.description}) \n"
+        for x in self.inv:
+            i += f"†††††ITEM††††† \n NAME: {x.name} - ({x.desc}) \n"
         return i
